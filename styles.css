@@ -1,18 +1,55 @@
+html {
+  margin: 0;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
 .landing-page-edu-bridge,
 .landing-page-edu-bridge * {
   box-sizing: border-box;
 }
 .landing-page-edu-bridge {
+  --design-width: 1244px;
+  --design-app-height: 5248.5px;
+  --page-scale: min(1, calc(100vw / var(--design-width)));
   background: #ffffff;
-  height: 5249px;
+  position: relative;
+  width: 100%;
+  min-height: calc(var(--design-app-height) * var(--page-scale));
+  overflow-x: hidden;
+}
+
+@supports (width: 100dvw) {
+  .landing-page-edu-bridge {
+    --page-scale: min(1, calc(100dvw / var(--design-width)));
+  }
+}
+
+.viewport-scaler {
+  width: calc(var(--design-width) * var(--page-scale));
+  max-width: 100%;
+  margin: 0 auto;
+  min-height: calc(var(--design-app-height) * var(--page-scale));
+  overflow: hidden;
+}
+
+.viewport-scaler__stage {
+  width: var(--design-width);
+  transform: scale(var(--page-scale));
+  transform-origin: top center;
   position: relative;
 }
+
 .app {
   width: 1244px;
   height: 5248.5px;
-  position: absolute;
-  left: 0px;
-  top: 1px;
+  position: relative;
+  margin: 1px 0 0;
 }
 .main-content {
   width: 1244px;
@@ -2817,6 +2854,7 @@
   position: absolute;
   left: 0px;
   top: 0px;
+  z-index: 100;
 }
 .container60 {
   display: flex;
